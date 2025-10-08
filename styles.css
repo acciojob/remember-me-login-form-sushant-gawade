@@ -1,1 +1,56 @@
-/*  your css code here. If applicable */
+body {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 60px auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+label {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+input[type="submit"],
+button {
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+}
+
+button {
+  background-color: #28a745;
+}
+
+#existing {
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+}
