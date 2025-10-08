@@ -1,16 +1,131 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 60px auto;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 10px;
+      font-size: 1rem;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    input[type="submit"],
+    button {
+      padding: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+    }
+
+    button {
+      background-color: #28a745;
+    }
+
+    #existing {
+      display: none;
+    }
+  </style>
+</head>
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+  <h1>Login Form</h1>
+
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    
+    <label>
+      <input type="checkbox" id="checkbox" />
+      Remember me.
+    </label>
+
+    <input type="submit" id="submit" value="Submit" />
+  </form>
+
+  <button id="existing">Login as existing user</button>
+
+  <script>
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const rememberCheckbox = document.getElementById('checkbox');
+    const existingBtn = document.getElementById('existing');
+    const form = document.getElementById('loginForm');
+
+    // Check if credentials exist in localStorage
+    const savedUsername = localStorage.getItem('username');
+    const savedPassword = localStorage.getItem('password');
+
+    if (savedUsername && savedPassword) {
+      existingBtn.style.display = 'block';
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      alert(`Logged in as ${username}`);
+
+      if (rememberCheckbox.checked) {
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+      } else {
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
+      }
+
+      // Update visibility of existing user button
+      if (localStorage.getItem('username') && localStorage.getItem('password')) {
+        existingBtn.style.display = 'block';
+      } else {
+        existingBtn.style.display = 'none';
+      }
+
+      form.reset();
+    });
+
+    // Handle "Login as existing user" button
+    existingBtn.addEventListener('click', function () {
+      const savedUsername = localStorage.getItem('username');
+      if (savedUsername) {
+        alert(`Logged in as ${savedUsername}`);
+      }
+    });
+  </script>
 
 </body>
-
 </html>
